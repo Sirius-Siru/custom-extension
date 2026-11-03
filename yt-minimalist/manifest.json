@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Minimalist YouTube",
+  "version": "2.0",
+  "description": "YouTube tối giản để duyệt đề xuất và tìm kiếm; chặn media/player và bỏ UI không cần thiết.",
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.googlevideo.com/*",
+    "*://*.doubleclick.net/*",
+    "*://*.googleadservices.com/*",
+    "*://*.googlesyndication.com/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "minimal_youtube_rules",
+        "enabled": true,
+        "path": "rules.json"
+      }
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "css": ["style.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

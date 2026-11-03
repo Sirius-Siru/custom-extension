@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Open in MPV",
+  "version": "1.4",
+  "description": "Mở video YouTube bằng MPV qua menu chuột phải hoặc click icon.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "nativeMessaging"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {},
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.youtube.com/*",
+        "https://youtu.be/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "host_permissions": [
+    "https://*.youtube.com/*",
+    "https://youtu.be/*"
+  ]
+}

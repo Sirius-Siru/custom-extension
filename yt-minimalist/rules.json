@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "priority": 100,
+    "action": {
+      "type": "modifyHeaders",
+      "responseHeaders": [
+        {
+          "header": "Content-Security-Policy",
+          "operation": "append",
+          "value": "media-src 'none'; object-src 'none'"
+        }
+      ]
+    },
+    "condition": {
+      "regexFilter": "^https?://([^/]+\\.)?youtube\\.com/",
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 100,
+    "action": { "type": "block" },
+    "condition": {
+      "regexFilter": "^https?://[^/]+\\.googlevideo\\.com/",
+      "resourceTypes": ["media", "xmlhttprequest", "websocket"]
+    }
+  },
+  {
+    "id": 3,
+    "priority": 90,
+    "action": { "type": "block" },
+    "condition": {
+      "regexFilter": "^https?://([^/]+\\.)?(doubleclick\\.net|googleadservices\\.com|googlesyndication\\.com)/",
+      "resourceTypes": ["script", "xmlhttprequest", "image", "sub_frame"]
+    }
+  },
+  {
+    "id": 4,
+    "priority": 80,
+    "action": { "type": "block" },
+    "condition": {
+      "regexFilter": "^https?://([^/]+\\.)?youtube\\.com/(api/stats/ads|pagead|ptracking|youtubei/v1/log_event)",
+      "resourceTypes": ["xmlhttprequest", "ping", "image", "script"]
+    }
+  }
+]
